@@ -13,6 +13,34 @@ const main = (data) => {
     data.forEach(element => {
         const [policy, password] = element.split(':')
         const [limit, letter] = policy.split(' ')
+        const [first, second] = limit.split('-')
+
+        let letterCount = 0
+        if (password.charAt(first) == letter) {
+           letterCount += 1
+        }
+        if (password.charAt(second) == letter) {
+            letterCount += 1
+        }
+
+        if (letterCount == 1) {
+            meetsPolicy += 1
+        }
+//        console.log(min, max, letter, password, letterCount)
+    })
+
+    console.log(meetsPolicy, 'meet policy')
+}
+
+const part1 = (data) => {
+    data = data.split('\n')
+
+    data.splice(1000, 1)
+    let meetsPolicy = 0
+
+    data.forEach(element => {
+        const [policy, password] = element.split(':')
+        const [limit, letter] = policy.split(' ')
         const [min, max] = limit.split('-')
 
         let letterCount = 0
